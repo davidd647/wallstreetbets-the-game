@@ -12,7 +12,7 @@
             - Bonus: graph Big Mac inflation
             - Bonus: data is saved to/loaded from localStorage
         - Game
-            - By default, and also when stop is pressed
+            - By *default*, and also when *stop* is pressed
                 - Stop timer
                 - You can buy or sell stocks
                     - Buy
@@ -24,9 +24,9 @@
                 - Bonus: you have a character, and you can buy dumb expensive stuff
                     - $20k watch
                     - $500k car
-            - Press start, and 
+            - Press *start*, and 
                 - Start timer - every thirty seconds
-                    - Return a random day’s data and subsequent day’s data from the stock
-                    - Return the value change in the stock from random day’s data and subsequent day’s data
-                    - Return the current day’s data
-                    - Add a new day to the stock’s data, give it the value of current day’s data plus value change
+                    - Return a *random day’s data* and *subsequent day’s data* from the stock
+                    - Return the *value change* in the stock from *random day’s data* and *subsequent day’s data*
+                    - Return the *current day’s data*
+                    - Add a new day to the stock’s data, give it the value of *current day’s data* plus *value change*
