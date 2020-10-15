@@ -62,7 +62,17 @@ export default class LineChart extends Component {
   }
 
   buy(ticker) {
-    console.log("buy!");
+    console.log("buy!" + ticker);
+    let amountOfStocks = prompt(
+      "Please enter how many stocks you would like to buy",
+      "10"
+    );
+    if (parseInt(amountOfStocks) > 0) {
+      const currentMonth = this.state.data.labels[
+        this.state.data.labels.length - 1
+      ].substr(0, 7);
+      this.props.addNewToHoldings(ticker, amountOfStocks, currentMonth);
+    }
   }
 
   getNetWorth() {
@@ -230,17 +240,20 @@ export default class LineChart extends Component {
                   </Col>
                 </Row>
                 <Row>
-                  <Col>
-                    <Button onClick={() => this.sell(holding.symbol)}>
+                  <Col className="d-flex justify-content-end">
+                    <Button
+                      onClick={() => this.sell(holding.symbol)}
+                      className="mx-2 mt-3"
+                    >
                       Sell
                     </Button>
-                  </Col>
-                  {/* To-do:! */}
-                  {/* <Col>
-                    <Button onClick={() => this.buy(holding.symbol)}>
-                      Buy
+                    <Button
+                      onClick={() => this.buy(holding.symbol)}
+                      className="mx-2 mt-3"
+                    >
+                      Buy More
                     </Button>
-                  </Col> */}
+                  </Col>
                 </Row>
               </Card.Body>
             </Card>
