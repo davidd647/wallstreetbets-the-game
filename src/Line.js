@@ -74,6 +74,7 @@ export default class LineChart extends Component {
     newState.netWorth = this.getNetWorth();
     // update current funds
     // TO-DO!! what's the relevant stock?
+
     // newState.fundsSpent += amountOfStocks * relevantStock.amount;
     this.setState(newState);
   }
