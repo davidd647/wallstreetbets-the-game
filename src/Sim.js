@@ -9,23 +9,24 @@ export default class Sim extends Component {
     super(props);
 
     this.state = {
-      // screen: 0,
-      // initialFunds: 0,
-      // holdings: [],
-      screen: 2,
-      initialFunds: 10000,
-      holdings: [
-        { symbol: "TSLA", date: "2018-01-01", amount: 20 },
-        { symbol: "NFLX", date: "2018-01-01", amount: 20 },
-        // { symbol: "FB", date: "2018-01-01", amount: 20 },
-        // { symbol: "AMZN", date: "2018-01-01", amount: 20 },
-        // { symbol: "GOOGL", date: "2018-01-01", amount: 20 },
-      ],
+      screen: 0,
+      initialFunds: 0,
+      holdings: [],
+      // screen: 2,
+      // initialFunds: 10000,
+      // holdings: [
+      //   { symbol: "TSLA", date: "2018-01-01", amount: 20 },
+      //   { symbol: "NFLX", date: "2018-01-01", amount: 20 },
+      //   // { symbol: "FB", date: "2018-01-01", amount: 20 },
+      //   // { symbol: "AMZN", date: "2018-01-01", amount: 20 },
+      //   // { symbol: "GOOGL", date: "2018-01-01", amount: 20 },
+      // ],
     };
 
     this.changeScreen = this.changeScreen.bind(this);
     this.setInitialFunds = this.setInitialFunds.bind(this);
     this.addToHoldings = this.addToHoldings.bind(this);
+    this.sellAll = this.sellAll.bind(this);
   }
 
   changeScreen(targetScreen) {
@@ -44,6 +45,18 @@ export default class Sim extends Component {
     const newState = this.state;
     newState.holdings.push(holding);
     console.log(newState);
+    this.setState(newState);
+  }
+
+  sellAll(ticker) {
+    console.log("sell all of ", ticker);
+    const holdingIndex = this.state.holdings.findIndex(
+      (holding) => holding.symbol === ticker
+    );
+    console.log(holdingIndex);
+
+    const newState = this.state;
+    newState.holdings[holdingIndex].amount = 0;
     this.setState(newState);
   }
 
@@ -69,6 +82,7 @@ export default class Sim extends Component {
             holdings={this.state.holdings}
             initialFunds={this.state.initialFunds}
             holdings={this.state.holdings}
+            sellAll={this.sellAll}
           />
         ) : null}
       </div>

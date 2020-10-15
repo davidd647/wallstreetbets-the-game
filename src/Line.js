@@ -37,7 +37,28 @@ export default class LineChart extends Component {
   }
 
   sell(ticker) {
-    console.log("sell!");
+    console.log(`sell the ${ticker} stock!`);
+
+    const holding = this.props.holdings.find((holding) => {
+      return holding.symbol === ticker;
+    });
+
+    const relevantDataset = this.state.data.datasets.find(
+      (dataset) => dataset.label === ticker
+    );
+
+    const mostRecentPrice =
+      relevantDataset.data[relevantDataset.data.length - 1];
+
+    console.log({ mostRecentPrice });
+    console.log("holding.amount: ", holding.amount);
+    // const mostRecentPrice =
+    // dataset.data[dataset.data.length - 1];
+
+    const newState = this.state;
+    newState.currentFunds += mostRecentPrice * holding.amount;
+    this.props.sellAll(ticker);
+    this.setState(newState);
   }
 
   buy(ticker) {
@@ -45,7 +66,7 @@ export default class LineChart extends Component {
   }
 
   getNetWorth() {
-    const netWorth = this.state.data.datasets.reduce((total, dataset) => {
+    let netWorth = this.state.data.datasets.reduce((total, dataset) => {
       const holding = this.props.holdings.find((holding) => {
         return holding.symbol === dataset.label;
       });
@@ -54,6 +75,8 @@ export default class LineChart extends Component {
 
       return total + mostRecentPrice * holding.amount;
     }, 0);
+
+    netWorth += this.state.currentFunds;
 
     return netWorth;
   }
@@ -122,21 +145,23 @@ export default class LineChart extends Component {
         <h2>Stocks' Performance:</h2>
         <Line ref="chart" data={this.state.data} redraw />
         <Row className="my-3">
-          <Col>
+          {/* To-do: */}
+          {/* <Col>
             <Button className="btn" disabled>
               Play
             </Button>
-          </Col>
+          </Col> */}
           <Col>
             <Button className="btn btn-primary" onClick={this.increaseMonth}>
               +1 Month
             </Button>
           </Col>
-          <Col>
+          {/* To-do: */}
+          {/* <Col>
             <Button className="btn" disabled>
               Pause
             </Button>
-          </Col>
+          </Col> */}
         </Row>
         <hr />
         <Row className="my-3">
@@ -210,11 +235,12 @@ export default class LineChart extends Component {
                       Sell
                     </Button>
                   </Col>
-                  <Col>
+                  {/* To-do:! */}
+                  {/* <Col>
                     <Button onClick={() => this.buy(holding.symbol)}>
                       Buy
                     </Button>
-                  </Col>
+                  </Col> */}
                 </Row>
               </Card.Body>
             </Card>
