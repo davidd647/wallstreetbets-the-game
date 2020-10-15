@@ -198,7 +198,7 @@ export default class LineChart extends Component {
             : null;
 
           return (
-            <Card className="w-100" key={i}>
+            <Card className="w-100 mb-3" key={i}>
               <Card.Header>
                 ${holding.symbol} - bought {holding.amount} shares on{" "}
                 {holding.date}
