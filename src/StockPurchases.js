@@ -52,7 +52,7 @@ export default class StockPurchases extends Component {
   handleNext(e) {
     e.preventDefault();
 
-    this.props.changeScreen(2);
+    this.props.changeScreen(3);
   }
 
   render() {

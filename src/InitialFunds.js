@@ -29,7 +29,7 @@ export default class InitialFunds extends Component {
     if (typeof initialFunds === "number" && initialFunds > 0) {
       console.log("now changing screen...");
       this.props.setInitialFunds(initialFunds);
-      this.props.changeScreen(1);
+      this.props.changeScreen(2);
     } else {
       alert("please use numbers only in the input field");
     }
@@ -44,7 +44,7 @@ export default class InitialFunds extends Component {
   render() {
     return (
       <div>
-        <Row>
+        {/* <Row>
           <Card>
             <Card.Body>
               <h3>What is this?</h3>
@@ -80,7 +80,7 @@ export default class InitialFunds extends Component {
               </p>
             </Card.Body>
           </Card>
-        </Row>
+        </Row> */}
         <Row>
           <Card className="w-100 my-3">
             <Card.Body>

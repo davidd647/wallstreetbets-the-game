@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+import LandingPage from "./LandingPage";
 import InitialFunds from "./InitialFunds";
 import LineChart from "./Line";
 import StockPurchases from "./StockPurchases";
@@ -77,19 +78,22 @@ export default class Sim extends Component {
       <div className="col">
         <h1>r/Wallstreetbets: The Game</h1>
         {this.state.screen === 0 ? (
+          <LandingPage changeScreen={this.changeScreen} />
+        ) : null}
+        {this.state.screen === 1 ? (
           <InitialFunds
             changeScreen={this.changeScreen}
             setInitialFunds={this.setInitialFunds}
           />
         ) : null}
-        {this.state.screen === 1 ? (
+        {this.state.screen === 2 ? (
           <StockPurchases
             changeScreen={this.changeScreen}
             initialFunds={this.state.initialFunds}
             addToHoldings={this.addToHoldings}
           />
         ) : null}
-        {this.state.screen === 2 ? (
+        {this.state.screen === 3 ? (
           <LineChart
             holdings={this.state.holdings}
             initialFunds={this.state.initialFunds}
