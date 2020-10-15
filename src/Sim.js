@@ -1,0 +1,77 @@
+import React, { Component } from "react";
+
+import InitialFunds from "./InitialFunds";
+import LineChart from "./Line";
+import StockPurchases from "./StockPurchases";
+
+export default class Sim extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      // screen: 0,
+      // initialFunds: 0,
+      // holdings: [],
+      screen: 2,
+      initialFunds: 10000,
+      holdings: [
+        { symbol: "TSLA", date: "2018-01-01", amount: 20 },
+        { symbol: "NFLX", date: "2018-01-01", amount: 20 },
+        // { symbol: "FB", date: "2018-01-01", amount: 20 },
+        // { symbol: "AMZN", date: "2018-01-01", amount: 20 },
+        // { symbol: "GOOGL", date: "2018-01-01", amount: 20 },
+      ],
+    };
+
+    this.changeScreen = this.changeScreen.bind(this);
+    this.setInitialFunds = this.setInitialFunds.bind(this);
+    this.addToHoldings = this.addToHoldings.bind(this);
+  }
+
+  changeScreen(targetScreen) {
+    const newState = this.state;
+    newState.screen = targetScreen;
+    this.setState(newState);
+  }
+
+  setInitialFunds(funds) {
+    const newState = this.state;
+    newState.initialFunds = funds;
+    this.setState(newState);
+  }
+
+  addToHoldings(holding) {
+    const newState = this.state;
+    newState.holdings.push(holding);
+    console.log(newState);
+    this.setState(newState);
+  }
+
+  render() {
+    return (
+      <div className="col">
+        <h1>r/Wallstreetbets: The Game</h1>
+        {this.state.screen === 0 ? (
+          <InitialFunds
+            changeScreen={this.changeScreen}
+            setInitialFunds={this.setInitialFunds}
+          />
+        ) : null}
+        {this.state.screen === 1 ? (
+          <StockPurchases
+            changeScreen={this.changeScreen}
+            initialFunds={this.state.initialFunds}
+            addToHoldings={this.addToHoldings}
+          />
+        ) : null}
+        {this.state.screen === 2 ? (
+          <LineChart
+            holdings={this.state.holdings}
+            initialFunds={this.state.initialFunds}
+            holdings={this.state.holdings}
+          />
+        ) : null}
+      </div>
+    );
+  }
+}
