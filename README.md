@@ -1,3 +1,16 @@
+# r/Wallstreetbets - The Game!
+
+- Just a stock market simulator
+
+- Wanna preview the app? Just go here! 
+https://jolly-davinci-8ae1c7.netlify.app/
+
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
