@@ -27,12 +27,13 @@ export default class LineChart extends Component {
       toCalc: {},
       netWorth: 0,
       currentFunds: this.props.initialFunds,
-      initialFundsSpent: 0,
+      fundsSpent: 0,
     };
 
     this.sell = this.sell.bind(this);
     this.buy = this.buy.bind(this);
     this.increaseMonth = this.increaseMonth.bind(this);
+    this.getNetWorth = this.getNetWorth.bind(this);
   }
 
   sell(ticker) {
@@ -41,6 +42,20 @@ export default class LineChart extends Component {
 
   buy(ticker) {
     console.log("buy!");
+  }
+
+  getNetWorth() {
+    const netWorth = this.state.data.datasets.reduce((total, dataset) => {
+      const holding = this.props.holdings.find((holding) => {
+        return holding.symbol === dataset.label;
+      });
+
+      const mostRecentPrice = dataset.data[dataset.data.length - 1];
+
+      return total + mostRecentPrice * holding.amount;
+    }, 0);
+
+    return netWorth;
   }
 
   increaseMonth() {
@@ -96,8 +111,9 @@ export default class LineChart extends Component {
       newState.toCalc[dataset.label].currentAmount = newPrice;
     });
 
+    newState.netWorth = this.getNetWorth();
+
     this.setState(newState);
-    // this.chart.update();
   }
 
   render() {
@@ -131,7 +147,10 @@ export default class LineChart extends Component {
           </Col>
           <Col>
             <span>
-              Current Funds: ${parseFloat(this.state.currentFunds).toFixed(2)}
+              Current Funds: $
+              {parseFloat(
+                this.state.currentFunds - this.state.fundsSpent
+              ).toFixed(2)}
             </span>
           </Col>
           <Col>
@@ -285,6 +304,8 @@ export default class LineChart extends Component {
 
         const newState = this.state;
 
+        newState.fundsSpent += amountAtPurchase * relevantStock.amount;
+
         newState.toCalc[stockTicker] = {
           amountAtPurchase: amountAtPurchase,
           currentAmount: currentAmount,
@@ -301,6 +322,9 @@ export default class LineChart extends Component {
           // backgroundColor: randomColour,
           borderColor: randomColour,
         });
+
+        newState.netWorth = this.getNetWorth();
+
         this.setState(newState);
       });
     });
