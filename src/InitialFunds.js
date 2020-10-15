@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 export default class InitialFunds extends Component {
   constructor(props) {
@@ -54,7 +53,11 @@ export default class InitialFunds extends Component {
               <h3>Why tho?</h3>
               <p>
                 r/Wallstreetbets: The Game was made as an experiment for a{" "}
-                <a href="https://mintbean.io/" target="_blank">
+                <a
+                  href="https://mintbean.io/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Mintbean
                 </a>{" "}
                 hackathon.
