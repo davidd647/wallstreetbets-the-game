@@ -9,18 +9,18 @@ export default class Sim extends Component {
     super(props);
 
     this.state = {
-      // screen: 0,
-      // initialFunds: 0,
-      // holdings: [],
-      screen: 2,
-      initialFunds: 10000,
-      holdings: [
-        { symbol: "TSLA", date: "2018-01-01", amount: 20 },
-        { symbol: "NFLX", date: "2018-01-01", amount: 20 },
-        // { symbol: "FB", date: "2018-01-01", amount: 20 },
-        // { symbol: "AMZN", date: "2018-01-01", amount: 20 },
-        // { symbol: "GOOGL", date: "2018-01-01", amount: 20 },
-      ],
+      screen: 0,
+      initialFunds: 0,
+      holdings: [],
+      // screen: 2,
+      // initialFunds: 10000,
+      // holdings: [
+      //   { symbol: "TSLA", date: "2018-01-01", amount: 20 },
+      //   { symbol: "NFLX", date: "2018-01-01", amount: 20 },
+      //   // { symbol: "FB", date: "2018-01-01", amount: 20 },
+      //   // { symbol: "AMZN", date: "2018-01-01", amount: 20 },
+      //   // { symbol: "GOOGL", date: "2018-01-01", amount: 20 },
+      // ],
     };
 
     this.changeScreen = this.changeScreen.bind(this);
