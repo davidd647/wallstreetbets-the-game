@@ -81,7 +81,6 @@ export default class Sim extends Component {
           <LineChart
             holdings={this.state.holdings}
             initialFunds={this.state.initialFunds}
-            holdings={this.state.holdings}
             sellAll={this.sellAll}
           />
         ) : null}
