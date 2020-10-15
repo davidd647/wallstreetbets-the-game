@@ -57,16 +57,13 @@ export default class Sim extends Component {
   addToHoldings(holding) {
     const newState = this.state;
     newState.holdings.push(holding);
-    console.log(newState);
     this.setState(newState);
   }
 
   sellAll(ticker) {
-    console.log("sell all of ", ticker);
     const holdingIndex = this.state.holdings.findIndex(
       (holding) => holding.symbol === ticker
     );
-    console.log(holdingIndex);
 
     const newState = this.state;
     newState.holdings[holdingIndex].amount = 0;

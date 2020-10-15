@@ -37,8 +37,6 @@ export default class LineChart extends Component {
   }
 
   sell(ticker) {
-    console.log(`sell the ${ticker} stock!`);
-
     const holding = this.props.holdings.find((holding) => {
       return holding.symbol === ticker;
     });
@@ -50,8 +48,6 @@ export default class LineChart extends Component {
     const mostRecentPrice =
       relevantDataset.data[relevantDataset.data.length - 1];
 
-    console.log({ mostRecentPrice });
-    console.log("holding.amount: ", holding.amount);
     // const mostRecentPrice =
     // dataset.data[dataset.data.length - 1];
 
@@ -62,7 +58,6 @@ export default class LineChart extends Component {
   }
 
   buy(ticker) {
-    console.log("buy!" + ticker);
     let amountOfStocks = prompt(
       "Please enter how many stocks you would like to buy",
       "10"
@@ -92,9 +87,6 @@ export default class LineChart extends Component {
   }
 
   increaseMonth() {
-    console.log("increase month!");
-    console.log(this.state);
-
     const newState = this.state;
     // this.state.data
     //    labels:
@@ -102,13 +94,11 @@ export default class LineChart extends Component {
     //      get the month (e.g. 2020-10)
     //      add one to the month
     //      push the new month to the dataset
-    // console.log(newState.data.labels[newState.data.labels.length - 1]);
     let newestTime = newState.data.labels[
       newState.data.labels.length - 1
     ].substr(0, 7);
     let year = newestTime.substr(0, 4);
     let month = newestTime.substr(5, 7);
-    // console.log({ newestTime, year, month });
     month++;
     if (month > 12) {
       month = "1";
@@ -119,7 +109,6 @@ export default class LineChart extends Component {
     }
     const newerTime = `${year}-${month}-01`;
     newState.data.labels.push(newerTime);
-    // console.log(newerTime);
 
     //    for each of the datasets:
     //      choose a random number (between 0 and dataset.length-1)
@@ -280,14 +269,10 @@ export default class LineChart extends Component {
 
   async componentDidMount() {
     // const { datasets } = this.refs.chart.chartInstance.data;
-    // console.log(datasets[0].data);
-    console.log(this.props.holdings);
 
     const CUSTOM_STOCK_TICKERS = this.props.holdings.map(
       (holding) => holding.symbol
     );
-
-    console.log(CUSTOM_STOCK_TICKERS);
 
     CUSTOM_STOCK_TICKERS.forEach((stockTicker) => {
       this.fetchStocks(stockTicker).then((data) => {

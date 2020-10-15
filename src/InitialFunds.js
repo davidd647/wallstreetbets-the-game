@@ -18,16 +18,11 @@ export default class InitialFunds extends Component {
 
   handleClick(e) {
     e.preventDefault();
-    console.log("hi");
-
-    console.log(this.state.initialFunds);
 
     // shortening var name for readability
     const initialFunds = parseInt(this.state.initialFunds);
-    console.log("parsed int, and now we have: ", initialFunds);
 
     if (typeof initialFunds === "number" && initialFunds > 0) {
-      console.log("now changing screen...");
       this.props.setInitialFunds(initialFunds);
       this.props.changeScreen(2);
     } else {
