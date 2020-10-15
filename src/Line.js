@@ -68,6 +68,14 @@ export default class LineChart extends Component {
       ].substr(0, 7);
       this.props.addNewToHoldings(ticker, amountOfStocks, currentMonth);
     }
+
+    const newState = this.state;
+    // update networth
+    newState.netWorth = this.getNetWorth();
+    // update current funds
+    // TO-DO!! what's the relevant stock?
+    // newState.fundsSpent += amountOfStocks * relevantStock.amount;
+    this.setState(newState);
   }
 
   getNetWorth() {
@@ -236,12 +244,12 @@ export default class LineChart extends Component {
                     >
                       Sell
                     </Button>
-                    <Button
+                    {/* <Button
                       onClick={() => this.buy(holding.symbol)}
                       className="mx-2 mt-3"
                     >
                       Buy More
-                    </Button>
+                    </Button> */}
                   </Col>
                 </Row>
               </Card.Body>
